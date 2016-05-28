@@ -5,6 +5,10 @@ module.exports = function(environment) {
     modulePrefix: 'peepchat',
     environment: environment,
     baseURL: '/',
+    DS: {
+      host: 'http://localhost:4000',
+      namespace: 'api'
+    },
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
@@ -40,7 +44,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.DS.host = 'https://secure-brushlands-86807.herokuapp.com';
   }
 
   return ENV;

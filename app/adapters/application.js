@@ -1,5 +1,17 @@
 import JSONAPIAdapter from 'ember-data/adapters/json-api';
+import config from 'peepchat/config/environment';
 
 export default JSONAPIAdapter.extend({
-  namespace: 'api'
+  host: config.DS.host,
+  namespace: config.DS.namespace,
+
+  urlForCreateRecord(modelName) {
+    switch (modelName) {
+      case 'user':
+      case 'users':
+        return this._super.apply(this, arguments).replace('users', 'register');
+      default:
+        return this._super(...arguments);
+    }
+  }
 });

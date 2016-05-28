@@ -5,11 +5,14 @@ const { Route } = Ember;
 export default Route.extend({
 
   model() {
-    return {};
+    return {
+      email: '',
+      password: '',
+    };
   },
 
   setupController(controller, model) {
-    controller.set('model', model);
+    controller.set('loginCredentials', model);
   },
 
   actions: {
