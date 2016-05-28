@@ -1,0 +1,13 @@
+<input 
+	class="x-input__input 
+	{{if value
+		(concat
+			"validate "
+			(if errors.length "invalid" "valid")
+		)
+	}}"
+	type={{type}}
+	value={{value}}
+	onkeyup={{action (mut value) value='target.value'}}
+	onchange={{action (mut value) value='target.value'}} />
+<label data-error={{_errorMessages}} {{action 'clickLabel'}}>{{label}}</label>

@@ -1,0 +1,10 @@
+// Fix for Roboto font path
+$roboto-font-path: '../assets/';
+
+// Materialize styles
+@import "materialize";
+@import "ember-cli-materialize";
+
+body {
+	background-color: color('indigo', 'darken-1');
+}
