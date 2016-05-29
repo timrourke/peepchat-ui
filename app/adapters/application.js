@@ -1,7 +1,9 @@
 import JSONAPIAdapter from 'ember-data/adapters/json-api';
+import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
 import config from 'peepchat/config/environment';
 
-export default JSONAPIAdapter.extend({
+export default JSONAPIAdapter.extend(DataAdapterMixin, {
+  authorizer: 'authorizer:oauth2',
   host: config.DS.host,
   namespace: config.DS.namespace,
 
