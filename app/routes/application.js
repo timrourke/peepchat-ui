@@ -2,8 +2,11 @@ import Ember from 'ember';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 
 const { Route } = Ember;
+const { service } = Ember.inject;
 
 export default Route.extend(ApplicationRouteMixin, {
+
+  flashMessages: service(),
 
   actions: {
 
@@ -12,6 +15,7 @@ export default Route.extend(ApplicationRouteMixin, {
      */
     logout() {
       this.get('session').invalidate();
+      this.get('flashMessages').success('Logged out.');
     }
 
   }

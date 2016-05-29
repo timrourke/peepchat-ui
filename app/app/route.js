@@ -23,14 +23,16 @@ export default Route.extend({
    * as the `session.currentUser`.
    */
   afterModel() {
+    let token = this.get('session.session.content.authenticated.access_token');
     return fetch(`${config.DS.host}/${config.DS.namespace}/user/current`, {
       type: 'GET',
       headers: {
-        'Authorization': `Bearer ${this.get('session').get('session.content.authenticated.access_token')}`
+        'Authorization': `Bearer ${token}`
       }
     }).then((raw) => {
-      return raw.json().then((data) => {
-        const currentUser = this.store.pushPayload(data);
+      return raw.json().then((json) => {
+        this.store.pushPayload(json);
+        const currentUser = this.store.peekRecord('user', json.data.id);
         this.set('session.currentUser', currentUser);
       });
     });
